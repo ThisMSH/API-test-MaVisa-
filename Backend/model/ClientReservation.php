@@ -221,4 +221,12 @@ class ClientReservation
         $this->reservation_time = $row['time'];
 
     }
+
+    public function get_all_reservations() {
+        $query = "SELECT * FROM `reservation`";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
+    }
 }

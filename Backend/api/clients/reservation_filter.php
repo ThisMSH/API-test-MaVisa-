@@ -30,10 +30,12 @@ if($numRows > 0){
 
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
+        var_dump(extract($row));
 
         $time_items = array(
             'id' => $id,
-            'time' => $time
+            'time' => $time,
+            'date' => $date,
         );
 
         $times_array[] = $time_items;

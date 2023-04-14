@@ -9,20 +9,19 @@ include_once '../model/ClientReservation.php';
 $database = new Database;
 $conn = $database->connect();
 
-$client = new ClientReservation($conn);
+$reservation = new ClientReservation($conn);
 
-$result = $client->getAllEvents();
+$result = $reservation->get_all_reservations();
 
-$dates = $result->fetchAll(PDO::FETCH_COLUMN);
+$dates = $result->fetchAll(PDO::FETCH_ASSOC);
 
 if(count($dates) > 0){
 
     $events = array_map(function($date) {
         return [
-            'start' => $date,
-            'end' => $date,
-            'display' => 'background',
-            'color' => '#000',
+            'title' => $date['time'],
+            'start' => $date['date'],
+            'end' => $date['date'],
         ];
     }, $dates);
 

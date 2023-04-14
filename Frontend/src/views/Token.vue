@@ -1,11 +1,11 @@
 <template>
     <div class="home mt-5 d-flex flex-column align-items-center">
-        <h1 class="my-5">Home Page</h1>
-        <div class="container bg-light rounded">
-            <div class="d-flex align-items-center justify-content-center">
-                <p class="fs-4 text-center justify-content-center mb-0">Your token is {{ token ? token : "not defined yet"
+        <h1 class="my-5">You almost made it!</h1>
+        <div class="container bg-dark rounded">
+            <div class="align-items-center justify-content-center dd">
+                <p class="fs-4 text-center justify-content-center mb-0">Your token is: {{ token ? token : "not defined yet"
                 }}</p>
-                <button class="copy btn py-2 px-5 rounded-3 fs-4 mx-3" @click="copyToClipboard()">Copy</button>
+                <button class="copy btn py-2 px-5 rounded-3 fs-4 ms-4" @click="copyToClipboard()">Copy</button>
             </div>
         </div>
     </div>
@@ -42,6 +42,12 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
+.dd {
+    display: inline-flex;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    border-radius: 8px;
+}
 .container {
     padding: 5rem 0;
 }

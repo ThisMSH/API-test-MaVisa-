@@ -1,18 +1,21 @@
 <template>
-    <div class="container p-5 mt-5">
+    <div class="container cont cont2">
         <div>
-            <h1 class="mb-5">Reservation Form:</h1>
-            <div class="d-flex flex-column bg-light rouned p-5 g-4">
-                <div class="calender w-100 p-5 border rounded-3">
-                    <FullCalendar :options="calendarOptions" />
-                </div>
-                <div class="w-100 p-5 d-flex flex-column align-items-center">
-                    <h2 class="mb-5">Choose A Timing:</h2>
-                    <div class="form-floating mb-3 w-50">
-                        <select class="form-select form-control" aria-label="Default select" v-model="selected_time">
-                            <option v-for="time in filtered_times" :key="time.id">{{ time }}</option>
-                        </select>
-                        <label>type de chambre</label>
+            <h1 class="mb-5">Select an available date:</h1>
+            <div class="container bg-dark rouned p-5 g-4 cont2">
+                <div class="row">
+                    <div class="col-8 calender p-5 border rounded-3">
+                        <FullCalendar :options="calendarOptions" />
+                    </div>
+                    <div class="col-4 p-2 pt-5 d-flex flex-column align-items-center">
+                        <h2 class="mb-5">Choose A Timing:</h2>
+                        <div class="form-floating mb-3 w-75">
+                            <select class="form-select form-control bg-dark text-white" aria-label="Default select"
+                                v-model="selected_time">
+                                <option v-for="time in filtered_times" :key="time.id">{{ time }}</option>
+                            </select>
+                            <label>type de chambre</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -45,6 +48,7 @@ export default {
                     await axios.get("http://localhost/MaVisa/Backend/api/reservation_filter.php?date=" + info.dateStr)
                         .then((response) => {
                             if (response.data != 0) {
+                                console.log(response.data);
                                 this.filtered_times.length = 0
                                 this.filtered_times = this.filtered_times.concat(
                                     this.times.filter((time) => !response.data.includes(time))
@@ -69,7 +73,13 @@ export default {
                 },
                 initialView: "dayGridMonth",
                 weekends: false,
-                events: [],
+                events: [
+                    {
+                        title: "test",
+                        start: "2023-04-18",
+                        end: "2023-04-18",
+                    }
+                ],
             },
         };
     },
@@ -104,6 +114,14 @@ export default {
 </script>
 
 <style>
+.cont2 {
+    width: 130% !important;
+}
+
+.cont {
+    margin: 7rem auto;
+}
+
 .check {
     margin-top: 20px;
     padding: 0.4rem 2rem;
@@ -113,7 +131,7 @@ export default {
 }
 
 .check:hover {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(89, 89, 89);
     color: white;
 }
 
@@ -128,4 +146,5 @@ export default {
     color: black !important;
     align-self: center;
     justify-self: center;
-}</style>
+}
+</style>

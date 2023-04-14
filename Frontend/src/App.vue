@@ -29,12 +29,16 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    background-color: #000;
+}
+
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    color: #fff;
 }
 
 nav ul a {
@@ -48,10 +52,6 @@ nav ul a {
 nav ul a:hover {
     color: rgb(113, 113, 113);
     cursor: pointer;
-}
-
-nav ul li {
-    text-align: start !important;
 }
 
 @media (max-width: 768px) {

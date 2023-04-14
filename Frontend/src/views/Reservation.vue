@@ -1,19 +1,21 @@
 <template>
-    <section class="registration d-flex flex-column align-items-center justify-content-center">
+    <section class="registration d-flex flex-column align-items-center justify-content-evenly" v-if="!visible">
+        <h1>Follow your reservation</h1>
         <div class="home">
+            <p>Please enter your token below:</p>
             <div class="form-floating mb-3">
-                <input class="form-control" type="text" placeholder="Access Token" v-model="token" />
+                <input class="form-control bg-dark text-white" type="text" placeholder="Access Token" v-model="token" />
                 <label>Access Token</label>
             </div>
             <p class="bg-danger text-white rounded">{{ token_error }}</p>
             <p class="bg-warning text-white rounded">{{ token_not_found }}</p>
             <p class="bg-success text-white rounded">{{ token_found }}</p>
-            <button class="track btn" @click="getData()">Track</button>
+            <button class="track btn btn-secondary" @click="getData()">Track</button>
         </div>
     </section>
-    <section class="data mb-5 rounded d-flex flex-column justify-content-center" v-if="visible">
-        <h2>Happy To See You Back <span class="fw-bold text-white">{{ data.nom_complet }}</span></h2>
-        <div class="fs-6 text-start mx-5 text-black">
+    <section class="data container rounded d-flex flex-column justify-content-center align-items-center bg-dark text-white" v-if="visible">
+        <h2>Welcome back <span class="fw-bold text-white">{{ data.nom_complet }}</span></h2>
+        <div class="fs-6 text-start mx-5 text-white">
             <p>Token: <span>{{ data.token }}</span></p>
             <p>Birth Date: <span>{{ data.naissance }}</span></p>
             <p>Nationality: <span>{{ data.nationalite }}</span></p>
@@ -101,9 +103,8 @@ export default {
 
 .data {
     padding: 5rem 1rem;
-    min-height: 100vh;
-    margin: 0 4rem;
-    background-color: rgb(215, 215, 215) !important;
+    min-height: 100%;
+    margin: 100px auto 0;
 }
 
 .data h2 {
@@ -121,15 +122,9 @@ export default {
 
 .track {
     padding: 10px 40px;
-    background-color: black;
-    color: white;
     border-radius: 30px;
-    transition: .3s ease-in-out;
 }
 
-.track:hover {
-    background-color: rgb(179, 179, 179);
-}
 
 @media (max-width: 765px) {
     .home {
