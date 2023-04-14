@@ -153,28 +153,12 @@ export default {
         console.log(this.data)
     },
     methods: {
-        // async fetch_events() {
-        //     await axios.get("http://localhost/MaVisa/Backend/api/getEvents.php")
-        //         .then((response) => {
-        //             this.calendarOptions.events = response.data.dates;
-        //         });
-        // },
-        // async check() {
-        //     let response = await axios.get('http://localhost/MaVisa/Backend/api/reservation_filter.php?date=' + this.data.reservation_date)
-        //     if (response.data.message == "Missing Required Fields" || response.data.message == 'invalid reservation date') {
-        //         console.log(response)
-        //         alert('Missing Required Fields')
-        //     } else {
-        //         this.check_visibility = false
-        //         this.update_visibility = true
-        //     }
-        // },
         async update() {
             if (localStorage.getItem('date') != undefined) {
                 this.data.reservation_date = localStorage.getItem('date')
             }
             try {
-                this.data.reservation_date = this.selected_time
+                this.data.reservation_time = this.selected_time
                 let res = await axios.put('http://localhost/MaVisa/Backend/api/update.php?token=' + this.token, this.data)
                 console.log(res)
                 if (res.data.errors != undefined) {
@@ -188,7 +172,13 @@ export default {
             } catch (e) {
                 console.log(e)
             }
-        }
+        },
+        async fetch_events() {
+            await axios.get("http://localhost/MaVisa/Backend/api/getEvents.php")
+                .then((response) => {
+                    this.calendarOptions.events = response.data.dates;
+                });
+        },
     }
 }
 </script>
